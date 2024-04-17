@@ -50,6 +50,7 @@ export default function Result({ userAnswers }) {
               <h3>{index + 1}</h3>
               <p className="question">{Question[index].text}</p>
               <p className={cssClass}>{answer ?? "Skipped"}</p>
+              <p className="rightAnswer">{ cssClass === 'wrong' ? 'Correct: ' +Question[index].answers[0]: ''}</p>
             </li>
           );
         })}
