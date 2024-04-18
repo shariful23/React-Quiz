@@ -32,8 +32,15 @@ body {
 }
 
 header {
-  margin: 2rem 0;
+  margin: 1rem 0;
   text-align: center;
+}
+
+@media (width<540px) {
+  header{
+    margin: 0;
+  }
+  
 }
 
 

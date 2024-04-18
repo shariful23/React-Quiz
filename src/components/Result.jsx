@@ -3,15 +3,13 @@ import Question from "../questions.js";
 export default function Result({ userAnswers }) {
   const skippedAnswer = userAnswers.filter((answer) => answer === null);
   const totalSkip = skippedAnswer.length;
-  const skipParcent = ((totalSkip / userAnswers.length) * 100);
+  const skipParcent = (totalSkip / userAnswers.length) * 100;
 
   const correctAns = userAnswers.filter(
     (answer, index) => answer === Question[index].answers[0]
   );
   const totalCorrect = correctAns.length;
-  const correctRatio = (
-    (totalCorrect / userAnswers.length) * 100
-  ).toFixed(1);
+  const correctRatio = ((totalCorrect / userAnswers.length) * 100).toFixed(1);
 
   const wrongAns = userAnswers.length - (totalCorrect + totalSkip);
   const wrongRatio = (100 - skipParcent - correctRatio).toFixed(1);
@@ -50,7 +48,11 @@ export default function Result({ userAnswers }) {
               <h3>{index + 1}</h3>
               <p className="question">{Question[index].text}</p>
               <p className={cssClass}>{answer ?? "Skipped"}</p>
-              <p className="rightAnswer">{ cssClass === 'wrong' ? 'Correct: ' +Question[index].answers[0]: ''}</p>
+              <p className="rightAnswer">
+                {cssClass === "wrong" || cssClass === "skipped"
+                  ? "Correct: " + Question[index].answers[0]
+                  : ""}
+              </p>
             </li>
           );
         })}
